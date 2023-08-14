@@ -1,0 +1,321 @@
+/*
+  Josh's Custom CSS Reset
+  https://www.joshwcomeau.com/css/custom-css-reset/
+*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+* {
+    margin: 0;
+    // font: inherit;
+}
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+#root,
+#__next {
+    isolation: isolate;
+}
+
+button,
+[type="button"],
+[role="button"] {
+    text-decoration: none;
+    background-color: transparent;
+    border: 0;
+    outline: none;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+@mixin mq($breakpoint: 768px) {
+    @media (width > $breakpoint) {
+        @content;
+    }
+}
+
+@mixin undershadow() {
+    box-shadow: 0 var(--size-2) hsl(var(--grayish-blue-value) / 0.25);
+}
+// SASS
+// Colors
+
+// Primary
+
+$cyan-value: 179 62% 43%;
+$bright-yellow-value: 71 73% 54%;
+
+// Neutral
+$light-gray-value: 204 43% 93%;
+$grayish-blue-value: 218 22% 67%;
+
+/* CSS */
+.container {
+    // width: calc(375px - 3rem);
+    margin-inline: auto;
+    width: min(calc(100% - 4rem), 1120px);
+}
+
+:root {
+    --size-1: 0.25rem;
+    --size-2: 0.5rem;
+    --size-3: 0.75rem;
+    --size-4: 1rem;
+    --size-5: 1.25rem;
+    --size-6: 1.5rem;
+    --size-7: 1.75rem;
+    --size-8: 2rem;
+    --size-9: 2.25rem;
+    --size-10: 2.5rem;
+    --size-11: 2.75rem;
+    --size-12: 3rem;
+    --size-13: 3.25rem;
+    --size-14: 3.5rem;
+    --size-15: 3.75rem;
+    --size-16: 4rem;
+    --size-17: 4.25rem;
+    --size-18: 4.5rem;
+    --size-19: 4.75rem;
+    --size-20: 5rem;
+    --size-21: 5.25rem;
+    --size-22: 5.5rem;
+    --size-23: 5.75rem;
+    --size-24: 6rem;
+    --size-25: 6.25rem;
+    --size-26: 6.5rem;
+    --size-27: 6.75rem;
+    --size-28: 7rem;
+    --size-29: 7.25rem;
+    --size-30: 7.5rem;
+    --size-31: 7.75rem;
+    --size-32: 8rem;
+    --size-33: 8.25rem;
+    --size-34: 8.5rem;
+    --size-35: 8.75rem;
+    --size-36: 9rem;
+
+    --cyan-value: #{$cyan-value};
+    --bright-yellow-value: #{$bright-yellow-value};
+
+    // Neutral
+    --light-gray-value: #{$light-gray-value};
+    --grayish-blue-value: #{$grayish-blue-value};
+
+    --cyan: hsl(var(--cyan-value));
+    --bright-yellow: hsl(var(--bright-yellow-value));
+    --light-gray: hsl(var(--light-gray-value));
+    --grayish-blue: hsl(var(--grayish-blue-value));
+}
+
+.text {
+    &--primary {
+        color: #fff;
+    }
+    &--accent {
+        color: var(--bright-yellow);
+    }
+    &--secondary {
+        color: var(--grayish-blue);
+    }
+    &--neutral {
+        color: var(--light-gray);
+    }
+}
+
+body {
+    font-family: "Karla", sans-serif;
+    color: white;
+}
+main {
+    display: grid;
+    place-content: center;
+
+    min-height: 100dvh;
+
+    background-color: var(--light-gray);
+}
+.component {
+    margin-block: var(--size-18);
+
+    .wrapper {
+        display: grid;
+        grid-template-areas: 
+        "hero"
+        "cta"
+        "details";
+        border-radius: var(--size-1);
+        overflow: hidden;
+        box-shadow: 0 var(--size-2) var(--size-4) hsl(0 0% 0% / 0.2);
+
+        max-width: 700px;
+        margin-inline: auto;
+
+        @include mq(640px) {
+            grid-template-rows: auto 1fr;
+            grid-template-columns: 1fr 1fr;
+            grid-template-areas:
+                "hero hero"
+                "cta  details";
+
+            border-radius: var(--size-2);
+        }
+        > * {
+            padding-inline: var(--size-6);
+
+            @include mq(640px) {
+                padding-inline: var(--size-10);
+            }
+        }
+    }
+}
+.hero {
+    padding-block: var(--size-7);
+
+    background-color: #fff;
+    @include mq(640px) {
+        padding-block: var(--size-10);
+    }
+
+    @include mq(640px) {
+        grid-area: hero;
+    }
+
+    > * + * {
+        margin-top: var(--size-4);
+    }
+
+    &__heading {
+        font-size: var(--size-5);
+        color: var(--cyan);
+        @include mq(640px) {
+            font-size: var(--size-6);
+        }
+    }
+
+    &__subheading {
+        font-weight: 700;
+        @include mq(640px) {
+            font-size: calc(var(--size-4) + var(--size-1) / 2);
+        }
+    }
+    &__text {
+        margin-top: var(--size-3);
+        font-size: calc(var(--size-4) - var(--size-1) / 2);
+        line-height: 1.75;
+
+        @include mq(640px){
+            font-size: var(--size-4s);
+        }
+        
+    }
+}
+
+.cta {
+    padding-block: var(--size-6);
+    background-color: var(--cyan);
+
+    grid-area: cta;
+    @include mq(640px) {
+        padding-block: var(--size-9);
+    }
+    > * + * {
+        margin-top: var(--size-3);
+    }
+
+    &__heading {
+        font-size: calc(var(--size-4) + var(--size-1) / 2);
+    }
+    &__cost {
+        display: flex;
+        align-items: center;
+        gap: 1ch;
+        color: hsl(var(--light-gray-value) / 0.5);
+        &_focus {
+            font-size: var(--size-8);
+        }
+    }
+    &__text {
+        margin-top: var(--size-1);
+    }
+    &__button {
+
+        margin-top: var(--size-5);
+        
+        width: 100%;
+        background-color: var(--bright-yellow);
+        padding-block: var(--size-3);
+        font-weight: 700;
+        color: #fff;
+
+        border-radius: var(--size-2);
+
+        box-shadow: 0 var(--size-2) var(--size-4) hsl(0 0% 0% / 0.15);
+        &:active {
+            box-shadow:
+                0 var(--size-2) var(--size-4) hsl(0 0% 0% / 0.05),
+                inset 0 var(--size-1) hsl(0 0% 0% / 0.1);
+            translate: 0 2px;
+        }
+    }
+}
+
+.details {
+    background-color: hsl(179, 47%, 52%);
+    padding-block: var(--size-6);
+    grid-area: details;
+    @include mq(640px) {
+        padding-block: var(--size-9);
+    }
+    > * + * {
+        margin-top: var(--size-3);
+    }
+    &__heading {
+        font-size: calc(var(--size-4) + var(--size-1) / 2);
+    }
+    &__list {
+        list-style: none;
+        padding-left: 0;
+
+        font-size: calc(var(--size-4) - var(--size-1) / 2);
+    }
+}
